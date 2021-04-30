@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mosoft_website/provider/scrollControll.dart';
+import 'package:mosoft_website/widgets/3d-button/3d-button.dart';
 import 'package:mosoft_website/widgets/title.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -15,7 +16,6 @@ class RecentlyPublished extends StatelessWidget {
     );
   }
 }
-
 
 class Published extends StatelessWidget {
   @override
@@ -44,11 +44,92 @@ class Published extends StatelessWidget {
             children: [
               TheTitle('Recently Published'),
               SizedBox(height: 40),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: FlatButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(20.0),
+                      ),
+                      onPressed: () async {
+                        const url =
+                            'https://play.google.com/store/apps/details?id=com.mosoft.tiresize&hl=ar&gl=US';
+                        if (await canLaunch(url)) {
+                          await launch(url);
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Row(
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    color: Colors.redAccent,
+                                    width: 2,
+                                    height: 110),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              horizontal: 5),
+                                          child: Text(
+                                              'Building a Magical 3D Button',
+                                              style: TextStyle(
+                                                  fontSize: 25,
+                                                  fontWeight: FontWeight.bold)),
+                                        ),
+                                        Icon(Icons.arrow_forward_ios,
+                                            color: Colors.redAccent),
+                                      ],
+                                    ),
+                                    SizedBox(height: 10),
+                                    Text(
+                                      'Bet you can\'t click just once!',
+                                      style: TextStyle(color: Colors.black38),
+                                    ),
+                                    Text(
+                                        'Every action we take on the web starts with a button click, and yet most buttons are \nho-hum and uninspired. In this tutorial, we\'ll build an animated 3D button with dart\n and flutter that sparks joy.'),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                      flex: 1,
+                      child: Awesome3DButton(
+                        onPressed: () {},
+                        buttonColor: Color(0xffFF0041),
+                        buttonChild: Text(
+                          'Push Me',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        thickness: 10,
+                        buttonHeight: 70,
+                        buttonWidth: 180,
+                      )),
+                ],
+              ),
               FlatButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(20.0),
                 ),
-                onPressed: ()async {
+                onPressed: () async {
                   const url =
                       'https://play.google.com/store/apps/details?id=com.mosoft.tiresize&hl=ar&gl=US';
                   if (await canLaunch(url)) {
@@ -92,15 +173,7 @@ class Published extends StatelessWidget {
                                   ),
                                   SizedBox(height: 10),
                                   Text(
-                                      '1- Calculates the diameter, width, sidewall, circumference, and'),
-                                  Text(
-                                      '  revolutions per mile/km of any tire. Just enter the tire size.'),
-                                  Text(
-                                      '2- Compare two different tyre sizes and see the differences right away.'),
-                                  Text(
-                                    '3- It has a comprehensive database..',
-                                    style: TextStyle(color: Colors.black38),
-                                  ),
+                                      '1- Calculates the diameter, width, sidewall, circumference, and revolutions per mile/km of any tire. Just enter the tire size.\n2- Compare two different tyre sizes and see the differences right away. \n3- It has a comprehensive database..'),
                                 ],
                               ),
                             ],
@@ -115,7 +188,7 @@ class Published extends StatelessWidget {
                               ),
                               Padding(
                                 padding:
-                                const EdgeInsets.symmetric(horizontal: 8),
+                                    const EdgeInsets.symmetric(horizontal: 8),
                                 child: Image.asset(
                                   'assets/img/tiresize2.png',
                                   height: 100,
@@ -130,7 +203,7 @@ class Published extends StatelessWidget {
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           )),
     );

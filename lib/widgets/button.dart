@@ -83,7 +83,7 @@ class _MyButtonState extends State<MyButton> {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Icon(widget.icon, color: Colors.white),
+                          widget.icon==null?Container():   Icon(widget.icon, color: Colors.white),
                           Text(
                             widget.text,
                             style: TextStyle(color: Colors.white),
