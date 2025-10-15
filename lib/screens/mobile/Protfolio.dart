@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mosoft_website/background/clipPath.dart';
-import 'package:mosoft_website/provider/scrollControll.dart';
 import 'package:mosoft_website/screens/desktop/about.dart';
 import 'package:mosoft_website/widgets/my_logo.dart';
 import 'package:mosoft_website/widgets/title.dart';
-import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:html' as html;
 
 class ProtfolioMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var prov = Provider.of<ScrollControll>(context);
     print(MediaQuery.of(context).size.width);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -109,7 +106,8 @@ class ProtfolioMobile extends StatelessWidget {
                                                         color: Colors.white),
                                                     Text(
                                                       'Download My CV',
-                                                      style: TextStyle(fontSize: 10,
+                                                      style: TextStyle(
+                                                          fontSize: 10,
                                                           color: Colors.white),
                                                     )
                                                   ]),
@@ -122,14 +120,16 @@ class ProtfolioMobile extends StatelessWidget {
                               Expanded(
                                   flex: 3,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Image.asset('assets/img/gif1.gif'),
                                       // the Social
                                       Row(
                                         children: [
-                                           IconButton(
-                                              icon: FaIcon(FontAwesomeIcons.facebook,
+                                          IconButton(
+                                              icon: FaIcon(
+                                                  FontAwesomeIcons.facebook,
                                                   color: Color(0xff0F91F3)),
                                               onPressed: () async {
                                                 const url =
@@ -142,12 +142,17 @@ class ProtfolioMobile extends StatelessWidget {
                                               }),
                                           IconButton(
                                               icon: Container(
-                                                  padding: EdgeInsets.symmetric(horizontal: 3.5),
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 3.5),
                                                   decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(100),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            100),
                                                     gradient: LinearGradient(
-                                                        begin: Alignment.topRight,
-                                                        end: Alignment.bottomLeft,
+                                                        begin:
+                                                            Alignment.topRight,
+                                                        end: Alignment
+                                                            .bottomLeft,
                                                         colors: [
                                                           Color(0xff7A38AB),
                                                           Color(0xffD21A46),
@@ -169,10 +174,12 @@ class ProtfolioMobile extends StatelessWidget {
                                                 print("Pressed");
                                               }),
                                           IconButton(
-                                              icon: FaIcon(FontAwesomeIcons.twitter,
+                                              icon: FaIcon(
+                                                  FontAwesomeIcons.twitter,
                                                   color: Color(0xff2AA9E0)),
                                               onPressed: () async {
-                                                const url = 'https://twitter.com/Mostafa3wadD';
+                                                const url =
+                                                    'https://twitter.com/Mostafa3wadD';
                                                 if (await canLaunch(url)) {
                                                   await launch(url);
                                                 } else {
@@ -186,7 +193,8 @@ class ProtfolioMobile extends StatelessWidget {
                                                 color: Colors.black,
                                               ),
                                               onPressed: () async {
-                                                const url = 'https://github.com/Mostafa3wad';
+                                                const url =
+                                                    'https://github.com/Mostafa3wad';
                                                 if (await canLaunch(url)) {
                                                   await launch(url);
                                                 } else {
@@ -202,7 +210,7 @@ class ProtfolioMobile extends StatelessWidget {
                           ),
                           SizedBox(height: 40),
                           // About
-                          FlatButton(
+                          TextButton(
                             onLongPress: () {},
                             onPressed: () {},
                             child: Container(
@@ -248,7 +256,7 @@ class ProtfolioMobile extends StatelessWidget {
                           ),
                           SizedBox(height: 40),
                           // Skills
-                          FlatButton(
+                          TextButton(
                             onLongPress: () {},
                             onPressed: () {},
                             child: Container(
@@ -297,9 +305,16 @@ class ProtfolioMobile extends StatelessWidget {
                           ),
                           SizedBox(height: 40),
                           // Recently Published
-                          FlatButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(20.0),
+
+                          TextButton(
+                            style: ButtonStyle(
+                              shape: WidgetStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  side: BorderSide(color: Colors.transparent),
+                                ),
+                              ),
                             ),
                             onPressed: () async {
                               const url =
@@ -376,7 +391,6 @@ class ProtfolioMobile extends StatelessWidget {
                 ],
               ),
             ),
-
           ],
         ));
   }

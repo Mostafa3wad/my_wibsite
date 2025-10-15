@@ -27,7 +27,9 @@ class About extends StatelessWidget {
                         offset: Offset(-5, -5)),
                     BoxShadow(
                         blurRadius: 10,
-                        color: Colors.black12.withOpacity(.2),
+                        color: Colors.black12.withValues(
+                          alpha: (.2),
+                        ),
                         offset: Offset(5, 5)),
                   ]),
               child: Column(
@@ -118,9 +120,7 @@ class About extends StatelessWidget {
 }
 
 Widget richText(
-    {@required String titile,
-    @required String subTitle,
-    @required double fontSize}) {
+    {required String titile, required String subTitle, double? fontSize}) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 5),
     child: RichText(

@@ -26,11 +26,18 @@ class AppBarTaplet extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            FlatButton(
-              color: Color(0xdaf9b749),
+            TextButton(
+              // color: Color(0xdaf9b749),
               onPressed: () => Share.share(
                   'MoSoft https://repining-occurrence.000webhostapp.com/#/'),
-              shape: CircleBorder(),
+              style: ButtonStyle(
+                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: BorderSide(color: Colors.transparent),
+                  ),
+                ),
+              ),
               child: Icon(
                 Icons.share,
                 color: Color(0xffA7337A),
@@ -39,12 +46,17 @@ class AppBarTaplet extends StatelessWidget {
                     : size.width * 0.02,
               ),
             ),
-            FlatButton(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              color: Color(0xdaf9b749),
+            TextButton(
+              // padding: const EdgeInsets.symmetric(horizontal: 20),
+              // color: Color(0xdaf9b749),
               onPressed: () => prov.moveToSkilsView(),
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(20.0),
+              style: ButtonStyle(
+                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: BorderSide(color: Colors.transparent),
+                  ),
+                ),
               ),
               child: Row(
                 children: [
@@ -62,12 +74,17 @@ class AppBarTaplet extends StatelessWidget {
                 ],
               ),
             ),
-            FlatButton(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              color: Color(0xdaf9b749),
+            TextButton(
+              // padding: const EdgeInsets.symmetric(horizontal: 20),
+              // color: Color(0xdaf9b749),
               onPressed: () => prov.moveToAboutView(isTaplet: true),
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(20.0),
+              style: ButtonStyle(
+                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: BorderSide(color: Colors.transparent),
+                  ),
+                ),
               ),
               child: Text('About',
                   style: TextStyle(
@@ -80,12 +97,17 @@ class AppBarTaplet extends StatelessWidget {
                           ? Colors.white
                           : Color(0xffB9377F))),
             ),
-            FlatButton(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              color: Color(0xdaf9b749),
+            TextButton(
+              // padding: const EdgeInsets.symmetric(horizontal: 20),
+              // color: Color(0xdaf9b749),
               onPressed: () => prov.moveToRecentlyView(isTaplet: true),
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(20.0),
+              style: ButtonStyle(
+                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: BorderSide(color: Colors.transparent),
+                  ),
+                ),
               ),
               child: Text('Recently Published',
                   style: TextStyle(
@@ -98,12 +120,17 @@ class AppBarTaplet extends StatelessWidget {
                           ? Colors.white
                           : Color(0xffB9377F))),
             ),
-            FlatButton(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              color: Color(0xdaf9b749),
+            TextButton(
+              // padding: const EdgeInsets.symmetric(horizontal: 20),
+              // color: Color(0xdaf9b749),
               onPressed: () => prov.moveToHomeView(),
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(20.0),
+              style: ButtonStyle(
+                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: BorderSide(color: Colors.transparent),
+                  ),
+                ),
               ),
               child: Text('Home',
                   style: TextStyle(

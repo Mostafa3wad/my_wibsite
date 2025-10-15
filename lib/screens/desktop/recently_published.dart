@@ -36,7 +36,9 @@ class Published extends StatelessWidget {
                     offset: Offset(-5, -5)),
                 BoxShadow(
                     blurRadius: 10,
-                    color: Colors.black12.withOpacity(.2),
+                    color: Colors.black12.withValues(
+                      alpha: (.2),
+                    ),
                     offset: Offset(5, 5)),
               ]),
           child: Column(
@@ -48,9 +50,14 @@ class Published extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 3,
-                    child: FlatButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(20.0),
+                    child: TextButton(
+                      style: ButtonStyle(
+                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side: BorderSide(color: Colors.transparent),
+                          ),
+                        ),
                       ),
                       onPressed: () async {
                         const url =
@@ -125,9 +132,14 @@ class Published extends StatelessWidget {
                       )),
                 ],
               ),
-              FlatButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(20.0),
+              TextButton(
+                style: ButtonStyle(
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      side: BorderSide(color: Colors.transparent),
+                    ),
+                  ),
                 ),
                 onPressed: () async {
                   const url =

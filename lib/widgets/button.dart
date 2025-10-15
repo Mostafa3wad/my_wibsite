@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class MyButton extends StatefulWidget {
-  String text;
-  Function onTap;
-  IconData icon;
-  MyButton({this.text, this.onTap, this.icon});
+  final String text;
+  final VoidCallback onTap;
+  final IconData icon;
+  MyButton({required this.text, required this.onTap, required this.icon});
   @override
   _MyButtonState createState() => _MyButtonState();
 }
@@ -83,7 +82,7 @@ class _MyButtonState extends State<MyButton> {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          widget.icon==null?Container():   Icon(widget.icon, color: Colors.white),
+                          Icon(widget.icon, color: Colors.white),
                           Text(
                             widget.text,
                             style: TextStyle(color: Colors.white),

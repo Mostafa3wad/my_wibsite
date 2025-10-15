@@ -16,8 +16,8 @@ class Awesome3DButton extends StatelessWidget {
     this.buttonWidth = 160,
     this.thickness = 5,
     this.buttonColor = const Color(0xffa7337a),
-    @required this.buttonChild,
-    @required this.onPressed,
+    required this.buttonChild,
+    required this.onPressed,
   });
 
   @override

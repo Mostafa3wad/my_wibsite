@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -29,7 +28,9 @@ class Home extends StatelessWidget {
                       offset: Offset(-5, -5)),
                   BoxShadow(
                       blurRadius: 10,
-                      color: Colors.black12.withOpacity(.2),
+                      color: Colors.black12.withValues(
+                        alpha: (.2),
+                      ),
                       offset: Offset(5, 5)),
                 ],
                 color: Color(0xffF9B749),
@@ -40,10 +41,15 @@ class Home extends StatelessWidget {
               children: [
                 RotatedBox(
                   quarterTurns: 3,
-                  child: FlatButton(
+                  child: TextButton(
                     onPressed: () => prov.moveToHomeView(),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(20.0),
+                    style: ButtonStyle(
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: BorderSide(color: Colors.transparent),
+                        ),
+                      ),
                     ),
                     child: Text('Home',
                         style: TextStyle(
@@ -55,10 +61,15 @@ class Home extends StatelessWidget {
                 ),
                 RotatedBox(
                   quarterTurns: 3,
-                  child: FlatButton(
+                  child: TextButton(
                     onPressed: () => prov.moveToAboutView(),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(20.0),
+                    style: ButtonStyle(
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: BorderSide(color: Colors.transparent),
+                        ),
+                      ),
                     ),
                     child: Text('About',
                         style: TextStyle(
@@ -70,10 +81,15 @@ class Home extends StatelessWidget {
                 ),
                 RotatedBox(
                   quarterTurns: 3,
-                  child: FlatButton(
+                  child: TextButton(
                     onPressed: () => prov.moveToSkilsView(),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(20.0),
+                    style: ButtonStyle(
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: BorderSide(color: Colors.transparent),
+                        ),
+                      ),
                     ),
                     child: Text('Skills',
                         style: TextStyle(
@@ -85,10 +101,15 @@ class Home extends StatelessWidget {
                 ),
                 RotatedBox(
                   quarterTurns: 3,
-                  child: FlatButton(
+                  child: TextButton(
                     onPressed: () => prov.moveToRecentlyView(),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(20.0),
+                    style: ButtonStyle(
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: BorderSide(color: Colors.transparent),
+                        ),
+                      ),
                     ),
                     child: Text('Recently Published',
                         style: TextStyle(
@@ -98,10 +119,17 @@ class Home extends StatelessWidget {
                                 : Colors.white)),
                   ),
                 ),
-                FlatButton(
-                  onPressed: () =>
-                      Share.share('check out my website https://example.com'),
-                  shape: CircleBorder(),
+                TextButton(
+                  onPressed: () => SharePlus.instance.share(ShareParams(
+                      text: 'check out my website https://example.com')),
+                  style: ButtonStyle(
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        side: BorderSide(color: Colors.transparent),
+                      ),
+                    ),
+                  ),
                   child: Icon(
                     Icons.share,
                     color: Color(0xffA7337A),
@@ -128,7 +156,9 @@ class Home extends StatelessWidget {
                         offset: Offset(-5, -5)),
                     BoxShadow(
                         blurRadius: 10,
-                        color: Colors.black12.withOpacity(.2),
+                        color: Colors.black12.withValues(
+                          alpha: (.2),
+                        ),
                         offset: Offset(5, 5)),
                   ]),
               child: Stack(
@@ -138,8 +168,16 @@ class Home extends StatelessWidget {
                     right: 20,
                     child: Row(
                       children: [
-                        FlatButton(
-                            shape: CircleBorder(),
+                        TextButton(
+                            style: ButtonStyle(
+                              shape: WidgetStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  side: BorderSide(color: Colors.transparent),
+                                ),
+                              ),
+                            ),
                             child: FaIcon(FontAwesomeIcons.facebook,
                                 color: Color(0xff0F91F3)),
                             onPressed: () async {
@@ -151,8 +189,16 @@ class Home extends StatelessWidget {
                                 throw 'Could not launch $url';
                               }
                             }),
-                        FlatButton(
-                            shape: CircleBorder(),
+                        TextButton(
+                            style: ButtonStyle(
+                              shape: WidgetStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  side: BorderSide(color: Colors.transparent),
+                                ),
+                              ),
+                            ),
                             child: Container(
                                 padding: EdgeInsets.symmetric(horizontal: 3),
                                 decoration: BoxDecoration(
@@ -180,8 +226,16 @@ class Home extends StatelessWidget {
                               }
                               print("Pressed");
                             }),
-                        FlatButton(
-                            shape: CircleBorder(),
+                        TextButton(
+                            style: ButtonStyle(
+                              shape: WidgetStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  side: BorderSide(color: Colors.transparent),
+                                ),
+                              ),
+                            ),
                             child: FaIcon(FontAwesomeIcons.twitter,
                                 color: Color(0xff2AA9E0)),
                             onPressed: () async {
@@ -193,8 +247,16 @@ class Home extends StatelessWidget {
                               }
                               print("Pressed");
                             }),
-                        FlatButton(
-                            shape: CircleBorder(),
+                        TextButton(
+                            style: ButtonStyle(
+                              shape: WidgetStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  side: BorderSide(color: Colors.transparent),
+                                ),
+                              ),
+                            ),
                             child: FaIcon(FontAwesomeIcons.github),
                             onPressed: () async {
                               const url = 'https://github.com/Mostafa3wad';
@@ -249,7 +311,7 @@ class Home extends StatelessWidget {
                                     text: 'More About Me,',
                                     onTap: () => prov.moveToAboutView(),
                                   )
-                                 ],
+                                ],
                               ),
                               Row(
                                 mainAxisAlignment:
@@ -288,67 +350,72 @@ class Home extends StatelessWidget {
   }
 }
 
-  Widget column({String title, String subTilite}) {
-    return Builder(
-      builder: (context) => FlatButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(20.0),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 17,
-                        color: Color(0xff461556))),
-                SizedBox(height: 10),
-                Text(subTilite,
-                    style: TextStyle(
-                      fontSize: 11,
-                      color: Color(0xff4D5184),
-                    )),
-              ],
+Widget column({required String title, required String subTilite}) {
+  return Builder(
+    builder: (context) => TextButton(
+        style: ButtonStyle(
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+              side: BorderSide(color: Colors.transparent),
             ),
           ),
-          onPressed: () {
-            if (title == 'Email') {
-              // todo : copy for Email
-              Clipboard.setData(new ClipboardData(text: subTilite));
-              // todo : Opene Mail in Desktop
-              final Uri _emailLaunchUri = Uri(
-                  scheme: 'mailto',
-                  path: subTilite,
-                  queryParameters: {
-                    'subject': 'Example Subject & Symbols are allowed!'
-                  });
-              launch(_emailLaunchUri.toString());
-              Scaffold.of(context).showSnackBar(SnackBar(
-                backgroundColor: Color(0xff2C313C),
-                elevation: 6.0,
-                width: 200,
-                behavior: SnackBarBehavior.floating,
-                content: Text(
-                  "Email copied to clipboard",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ));
-            } else if (title == 'phone') {
-              Clipboard.setData(new ClipboardData(text: subTilite));
-              // todo : copy for phone
-              Scaffold.of(context).showSnackBar(SnackBar(
-                backgroundColor: Color(0xff2C313C),
-                elevation: 6.0,
-                width: 200,
-                behavior: SnackBarBehavior.floating,
-                content: Text(
-                  "phone copied to clipboard",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ));
-            }
-          }),
-    );
-  }
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
+                      color: Color(0xff461556))),
+              SizedBox(height: 10),
+              Text(subTilite,
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: Color(0xff4D5184),
+                  )),
+            ],
+          ),
+        ),
+        onPressed: () {
+          if (title == 'Email') {
+            // todo : copy for Email
+            Clipboard.setData(new ClipboardData(text: subTilite));
+            // todo : Opene Mail in Desktop
+            final Uri _emailLaunchUri = Uri(
+                scheme: 'mailto',
+                path: subTilite,
+                queryParameters: {
+                  'subject': 'Example Subject & Symbols are allowed!'
+                });
+            launch(_emailLaunchUri.toString());
+// TODO : show SnackBar
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Color(0xff2C313C),
+              elevation: 6.0,
+              width: 200,
+              behavior: SnackBarBehavior.floating,
+              content: Text(
+                "Email copied to clipboard",
+                style: TextStyle(color: Colors.white),
+              ),
+            ));
+          } else if (title == 'phone') {
+            Clipboard.setData(new ClipboardData(text: subTilite));
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Color(0xff2C313C),
+              elevation: 6.0,
+              width: 200,
+              behavior: SnackBarBehavior.floating,
+              content: Text(
+                "phone copied to clipboard",
+                style: TextStyle(color: Colors.white),
+              ),
+            ));
+          }
+        }),
+  );
+}

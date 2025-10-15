@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mosoft_website/provider/scrollControll.dart';
 import 'package:mosoft_website/screens/desktop/about.dart';
 import 'package:mosoft_website/widgets/title.dart';
- import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
 
 class Skills extends StatelessWidget {
   @override
@@ -29,7 +29,9 @@ class Skills extends StatelessWidget {
                         offset: Offset(-5, -5)),
                     BoxShadow(
                         blurRadius: 10,
-                        color: Colors.black12.withOpacity(.2),
+                        color: Colors.black12.withValues(
+                          alpha: (.2),
+                        ),
                         offset: Offset(5, 5)),
                   ]),
               child: Column(
@@ -60,7 +62,8 @@ class Skills extends StatelessWidget {
                                       subTitle: 'Java , Kotlin , XML.'),
                                   richText(
                                       titile: 'Database',
-                                      subTitle: 'Shared preference , sqflite , Firebase.'),
+                                      subTitle:
+                                          'Shared preference , sqflite , Firebase.'),
                                   richText(
                                       titile: 'Others  ',
                                       subTitle:

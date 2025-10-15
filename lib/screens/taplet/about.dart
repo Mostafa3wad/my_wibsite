@@ -33,7 +33,9 @@ class _AboutTapletState extends State<AboutTaplet> {
                   offset: Offset(-5, -5)),
               BoxShadow(
                   blurRadius: 10,
-                  color: Colors.black12.withOpacity(.2),
+                  color: Colors.black12.withValues(
+                    alpha: (.2),
+                  ),
                   offset: Offset(5, 5)),
             ]),
         child: Column(

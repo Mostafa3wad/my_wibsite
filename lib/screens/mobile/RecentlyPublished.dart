@@ -3,6 +3,7 @@ import 'package:mosoft_website/provider/scrollControll.dart';
 import 'package:mosoft_website/widgets/title.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class RecentlyPublishedTaplet extends StatelessWidget {
   @override
@@ -22,22 +23,30 @@ class RecentlyPublishedTaplet extends StatelessWidget {
                   offset: Offset(-5, -5)),
               BoxShadow(
                   blurRadius: 10,
-                  color: Colors.black12.withOpacity(.2),
+                  color: Colors.black12.withValues(alpha: .2),
                   offset: Offset(5, 5)),
             ]),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TheTitle('Recently Published'),
+            TheTitle(
+              'Recently Published',
+              colorText: null,
+            ),
             SizedBox(height: 30),
-            FlatButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(20.0),
+            TextButton(
+              style: ButtonStyle(
+                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: BorderSide(color: Colors.transparent),
+                  ),
+                ),
               ),
               onPressed: () async {
                 const url =
                     'https://play.google.com/store/apps/details?id=com.mosoft.tiresize&hl=ar&gl=US';
-                if (await canLaunch(url)) {
+                if (await canLaunchUrlString(url)) {
                   await launch(url);
                 } else {
                   throw 'Could not launch $url';
@@ -102,6 +111,5 @@ class RecentlyPublishedTaplet extends StatelessWidget {
             )
           ],
         ));
-    ;
   }
 }

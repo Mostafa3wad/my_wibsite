@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ScrollControll with ChangeNotifier {
+  late final ScrollController controller;
+
   double controllerOffset = 0;
   Color homeColor = Color(0xffF1F2F9);
   Color aboutColor = Color(0xffF1F2F9);
@@ -10,7 +12,6 @@ class ScrollControll with ChangeNotifier {
   ScrollControll() {
     initController();
   }
-  ScrollController controller;
 
   _scrollListener() {
     controllerOffset = controller.offset;

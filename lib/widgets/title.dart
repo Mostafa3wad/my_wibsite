@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TheTitle extends StatelessWidget {
   final String title;
-  final Color colorText;
-  TheTitle(this.title, {@required this.colorText});
+  final Color? colorText;
+  TheTitle(this.title, {super.key, this.colorText});
   @override
   Widget build(BuildContext context) {
     return Container(
