@@ -2,35 +2,34 @@ name: Daily Commit Digest
 
 on:
   schedule:
-    - cron: '0 20 * * *' # كل يوم 10 مساءً (UTC)
-  workflow_dispatch:      # تشغيل يدوي لو احتجت تجرب
+    - cron: '19 0 * * *' # 2:19 AM Egypt time (UTC+2)
+  workflow_dispatch:
 
 jobs:
   digest:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Fetch commits and generate digest
+      - name: Generate and send daily digest
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: |
-          pip install requests PyGithub
+          pip install requests PyGithub -q
 
           python3 << 'EOF'
           import requests
-          import json
-          import smtplib
           import os
+          import smtplib
           from datetime import datetime, timezone
-          from email.mime.multipart import MIMEMultipart
           from email.mime.text import MIMEText
+          from email.mime.multipart import MIMEMultipart
           from github import Github
 
           # ── 1. جيب كل commits النهارده ──────────────────────────────
-          g = Github(os.environ["GITHUB_TOKEN"])
+          g = Github(os.environ["GH_TOKEN"])
           user = g.get_user()
           today = datetime.now(timezone.utc).replace(
               hour=0, minute=0, second=0, microsecond=0
@@ -44,9 +43,8 @@ jobs:
                   for commit in commits:
                       all_commits.append({
                           "repo": repo.name,
-                          "message": commit.commit.message,
+                          "message": commit.commit.message.strip(),
                           "sha": commit.sha[:7],
-                          "url": commit.html_url,
                           "time": commit.commit.author.date.strftime("%H:%M")
                       })
               except Exception:
@@ -56,7 +54,7 @@ jobs:
               print("No commits today. Skipping.")
               exit(0)
 
-          # ── 2. جهز الـ prompt لـ Claude ──────────────────────────────
+          # ── 2. جهز الـ prompt لـ Gemini ──────────────────────────────
           commits_text = "\n".join([
               f"[{c['repo']}] {c['time']} — {c['message']} ({c['sha']})"
               for c in all_commits
@@ -77,22 +75,16 @@ jobs:
           اجعل التقرير منظم، مختصر، وعملي.
           """
 
-          # ── 3. بعت لـ Claude API ──────────────────────────────────────
+          # ── 3. بعت لـ Gemini API ──────────────────────────────────────
+          gemini_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={os.environ['GEMINI_API_KEY']}"
+
           response = requests.post(
-              "https://api.anthropic.com/v1/messages",
-              headers={
-                  "x-api-key": os.environ["ANTHROPIC_API_KEY"],
-                  "anthropic-version": "2023-06-01",
-                  "content-type": "application/json"
-              },
-              json={
-                  "model": "claude-sonnet-4-20250514",
-                  "max_tokens": 1500,
-                  "messages": [{"role": "user", "content": prompt}]
-              }
+              gemini_url,
+              headers={"Content-Type": "application/json"},
+              json={"contents": [{"parts": [{"text": prompt}]}]}
           )
 
-          digest = response.json()["content"][0]["text"]
+          digest = response.json()["candidates"][0]["content"]["parts"][0]["text"]
 
           # ── 4. بعت الـ Email ──────────────────────────────────────────
           date_str = datetime.now().strftime("%d/%m/%Y")
@@ -101,11 +93,8 @@ jobs:
           msg["Subject"] = f"📱 Daily Dev Digest — {date_str}"
           msg["From"] = os.environ["GMAIL_USER"]
           msg["To"] = os.environ["GMAIL_USER"]
-
-          # Plain text version
           msg.attach(MIMEText(digest, "plain", "utf-8"))
 
-          # Send
           with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
               server.login(
                   os.environ["GMAIL_USER"],
@@ -117,5 +106,5 @@ jobs:
                   msg.as_string()
               )
 
-          print(f"✅ Digest sent successfully! ({len(all_commits)} commits)")
+          print(f"✅ Digest sent! ({len(all_commits)} commits today)")
           EOF
